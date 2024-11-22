@@ -1,0 +1,15 @@
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get install -y zip nano wget curl git nodejs
+RUN curl -sL https://npmjs.org/install.sh | bash -
+
+WORKDIR /workspace
+
+COPY index.js .
+COPY package.json .
+
+RUN npm install
+
+EXPOSE 80
+
+CMD ["node","index.js"]
